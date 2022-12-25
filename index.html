@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Dosis:wght@200;300;800&display=swap");
       * {
         margin: 0;
         padding: 0;
@@ -15,6 +16,8 @@
         --housecolor: rgb(243, 229, 168);
         --garagecolor: rgb(219, 196, 90);
         --insidecolor: rgb(233, 226, 195);
+        --cursive: "Cedarville Cursive", cursive;
+        --bold: "Dosis", sans-serif;
       }
 
       body {
@@ -93,22 +96,30 @@
           0% 20%
         );
         box-shadow: inset 75px 25px 100px rgb(53, 50, 50);
-        animation: goup 10s 0.5s forwards;
         transform-origin: bottom;
-        border-bottom: 3px solid var(--garagecolor);
-        background-image: url("garage.jpeg");
+        /* border-bottom: 3px solid black; */
+        background-image: url("./garage.jpeg");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         /* z-index: 2; */
       }
 
+      .goup {
+        animation: goup 6s 0s forwards;
+      }
+
       .background {
-        height: 100%;
+        height: 110%;
         width: 100%;
         background: var(--insidecolor);
+        background: radial-gradient(rgb(66, 64, 64), black);
         position: absolute;
         bottom: 0;
         left: 0%;
-
-        clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        /* border-radius: 500px; */
+        clip-path: polygon(25% 0%, 75% 0%, 100% 16%, 100% 100%, 0 100%, 0 16%);
         box-shadow: inset 3px;
       }
 
@@ -221,6 +232,7 @@
         top: -5%;
         left: 44.5%;
         z-index: 25;
+        box-shadow: 50px 30px 200px yellow;
       }
 
       .up-star {
@@ -263,6 +275,94 @@
         box-shadow: 2px 15px 45px black;
       }
 
+      .merry {
+        position: absolute;
+        font-size: 4rem;
+        letter-spacing: 0.25em;
+        top: 5%;
+        /* left: 10%; */
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-family: var(--bold);
+        text-shadow: 3px 10px 55px limegreen;
+        transform: translateY(-50vh);
+        animation: dropdown 13.5s 2.5s forwards;
+        /* transform: rotate(-10deg); */
+      }
+
+      .xmas {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 14%;
+        font-size: 3rem;
+        transform: translateY(-50vh);
+        animation: dropdown 12.5s 2.5s forwards;
+
+        text-transform: uppercase;
+        /* letter-spacing: 0.55em; */
+        font-family: var(--cursive);
+        text-shadow: 3px 10px 55px red;
+
+        /* transform: rotate(-10deg); */
+      }
+
+      .sites {
+        color: rgb(0, 119, 255);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-family: var(--bold);
+        font-weight: 600;
+        font-size: 3rem;
+      }
+
+      .lime {
+        color: limegreen;
+        font-style: italic;
+      }
+
+      .landscape {
+        font-weight: 700;
+        font-family: var(--bold);
+        letter-spacing: 0.25em;
+        font-size: 2rem;
+        /* text-decoration: underline; */
+        text-transform: uppercase;
+        text-shadow: 2px 2px 10px black;
+      }
+
+      .click {
+        background: red;
+        color: white;
+        opacity: 85%;
+        cursor: pointer;
+        margin-top: 1.5rem;
+        padding: 0.45em;
+        border-radius: 200px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .click:hover::after {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, limegreen, skyblue);
+        position: absolute;
+        content: "";
+        opacity: 85%;
+        left: -125vw;
+        top: 0;
+        animation: slideover 0.2s forwards;
+      }
+
+      @keyframes slideover {
+        100% {
+          left: 0;
+        }
+      }
       @keyframes goup {
         25% {
           transform: translateY(-200px);
@@ -278,6 +378,12 @@
 
         100% {
           transform: translateY(-100vh);
+        }
+      }
+
+      @keyframes dropdown {
+        100% {
+          transform: translateY(0);
         }
       }
 
@@ -339,8 +445,14 @@
             <div class="stump"></div>
           </div>
         </div>
-        <div class="garage"></div>
+        <div class="garage">
+          <h1 class="sites">Site<span class="lime">scapes</span></h1>
+          <h3 class="landscape">Landscaping</h3>
+          <h3 class="click">(CLICK to Enter)</h3>
+        </div>
       </div>
+      <h1 class="merry">Merry</h1>
+      <h1 class="xmas">Christmas</h1>
       <!-- </div> -->
     </div>
 
@@ -360,8 +472,12 @@
         treeMidFive,
       ];
 
-      let lightCounter = [3, 5, 7, 9, 11, 13];
-      (() => {
+      let lightCounter = [3, 5, 7, 9, 9, 9];
+      document.querySelector(".click").onclick = (e) => {
+        e.target.style.opacity = 0;
+        e.target.style.transition = ".5s";
+        document.querySelector(".garage").classList.add("goup");
+
         setTimeout(async () => {
           for (let i = 0; i < treeLevels.length; i++) {
             for (let j = 0; j < lightCounter[i]; j++) {
@@ -371,19 +487,19 @@
               light.style.backgroundColor = bgColor;
               light.style.setProperty("--i", bgColor);
               light.style.animation = `glow ${Math.random() * 10}s ${
-                Math.random() * 8
+                (Math.random() * 5) | (0 + 3)
               }s infinite`;
 
               await new Promise((resolve) => {
-                setTimeout(() => resolve(), 200);
+                setTimeout(() => resolve(), 100);
               });
               treeLevels[i].append(light);
             }
 
             console.log("lightCounter", lightCounter[i]);
           }
-        }, 8500);
-      })();
+        }, 7250);
+      };
     </script>
   </body>
 </html>
