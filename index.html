@@ -289,8 +289,12 @@
         font-family: var(--bold);
         text-shadow: 3px 10px 55px limegreen;
         transform: translateY(-50vh);
-        animation: dropdown 13.5s 2.5s forwards;
+        /* animation: dropdown 13.5s 2.5s forwards; */
         /* transform: rotate(-10deg); */
+      }
+
+      .drop1 {
+        animation: dropdown 13.5s 2.5s forwards;
       }
 
       .xmas {
@@ -300,7 +304,7 @@
         top: 14%;
         font-size: 3rem;
         transform: translateY(-50vh);
-        animation: dropdown 12.5s 2.5s forwards;
+        /* animation: dropdown 12.5s 2.5s forwards; */
 
         text-transform: uppercase;
         /* letter-spacing: 0.55em; */
@@ -308,6 +312,10 @@
         text-shadow: 3px 10px 55px red;
 
         /* transform: rotate(-10deg); */
+      }
+
+      .drop2 {
+        animation: dropdown 12.5s 2.5s forwards;
       }
 
       .sites {
@@ -477,6 +485,8 @@
         e.target.style.opacity = 0;
         e.target.style.transition = ".5s";
         document.querySelector(".garage").classList.add("goup");
+        document.querySelector(".merry").classList.add("drop1");
+        document.querySelector(".xmas").classList.add("drop2");
 
         setTimeout(async () => {
           for (let i = 0; i < treeLevels.length; i++) {
