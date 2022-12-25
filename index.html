@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --housecolor: rgb(243, 229, 168);
+        --garagecolor: rgb(219, 196, 90);
+        --insidecolor: rgb(233, 226, 195);
+      }
+
+      body {
+        height: 100vh;
+        width: 100vw;
+      }
+      .app {
+        height: 100%;
+        width: 100%;
+        background: var(--housecolor);
+        position: relative;
+        overflow: hidden;
+        background-image: url("panels.jpeg");
+        background-size: cover;
+      }
+
+      .trim-parent {
+        width: 90%;
+        height: 90%;
+        position: absolute;
+        /* border: 3px dotted purple; */
+        bottom: 0;
+        left: 5%;
+        overflow: hidden;
+        /* background: var(--housecolor); */
+        background: white;
+        clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 20%,
+          100% 100%,
+          80% 100%,
+          20% 100%,
+          0 100%,
+          0% 20%
+        );
+      }
+
+      .trim {
+        height: 95%;
+        width: 95%;
+        background: var(--garagecolor);
+        position: absolute;
+        bottom: 0;
+        left: 2%;
+        background: white;
+        clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 20%,
+          100% 100%,
+          80% 100%,
+          20% 100%,
+          0 100%,
+          0% 20%
+        );
+        /* overflow: hidden; */
+        /* z-index: 15; */
+      }
+
+      .garage {
+        height: 100%;
+        width: 100%;
+        background: var(--housecolor);
+        position: absolute;
+        /* bottom: 0;
+        left: 0%; */
+        clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 20%,
+          100% 100%,
+          80% 100%,
+          20% 100%,
+          0 100%,
+          0% 20%
+        );
+        box-shadow: inset 75px 25px 100px rgb(53, 50, 50);
+        animation: goup 10s 0.5s forwards;
+        transform-origin: bottom;
+        border-bottom: 3px solid var(--garagecolor);
+        background-image: url("garage.jpeg");
+        /* z-index: 2; */
+      }
+
+      .background {
+        height: 100%;
+        width: 100%;
+        background: var(--insidecolor);
+        position: absolute;
+        bottom: 0;
+        left: 0%;
+
+        clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        box-shadow: inset 3px;
+      }
+
+      .window-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        position: absolute;
+        width: 100%;
+        top: 25%;
+      }
+
+      .window {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 5px;
+        border: 4px solid var(--garagecolor);
+        background: var(--housecolor);
+        background: transparent;
+        z-index: 5;
+      }
+
+      .tree-star-parent {
+        width: 50%;
+        height: 75%;
+        position: absolute;
+        left: 25%;
+        bottom: 5%;
+        /* border: 2px solid red; */
+      }
+
+      .tree-top {
+        width: 40%;
+        height: 20%;
+        left: 30%;
+        background: darkgreen;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        z-index: 12;
+      }
+
+      .tree-middle-one {
+        width: 60%;
+        height: 25%;
+        top: 10%;
+        left: 20%;
+        background: darkgreen;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        z-index: 10;
+      }
+
+      .tree-middle-two {
+        width: 70%;
+        height: 25%;
+        top: 25%;
+        left: 15%;
+        background: darkgreen;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        z-index: 8;
+      }
+
+      .tree-middle-three {
+        width: 75%;
+        height: 25%;
+        top: 40%;
+        left: 12%;
+        background: darkgreen;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        z-index: 7;
+      }
+
+      .tree-middle-four {
+        width: 80%;
+        height: 25%;
+        top: 55%;
+        left: 10%;
+        background: darkgreen;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        z-index: 6;
+      }
+
+      .tree-middle-five {
+        width: 85%;
+        height: 25%;
+        top: 70%;
+        left: 7%;
+        background: darkgreen;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        z-index: 5;
+      }
+
+      .treepiece {
+        /* position: relative; */
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        position: absolute;
+      }
+
+      .star-parent {
+        width: 50px;
+        height: 50px;
+        /* border: 2px solid black; */
+        position: absolute;
+        top: -5%;
+        left: 44.5%;
+        z-index: 25;
+      }
+
+      .up-star {
+        height: 100%;
+        width: 100%;
+        background: yellow;
+        position: absolute;
+        top: -15%;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+      }
+
+      .down-star {
+        height: 100%;
+        width: 100%;
+        background: yellow;
+        transform: rotate(180deg);
+        top: 15%;
+        position: absolute;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+      }
+
+      .light {
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        /* border: 1px solid black; */
+        position: relative;
+        z-index: 10;
+        --i: orange;
+      }
+
+      .stump {
+        width: 3rem;
+        height: 8rem;
+        background: brown;
+        position: absolute;
+        left: 40%;
+        bottom: -1em;
+        border-radius: 5px;
+        box-shadow: 2px 15px 45px black;
+      }
+
+      @keyframes goup {
+        25% {
+          transform: translateY(-200px);
+        }
+
+        50% {
+          transform: translateY(0px);
+        }
+
+        75% {
+          transform: translateY(-300px);
+        }
+
+        100% {
+          transform: translateY(-100vh);
+        }
+      }
+
+      @keyframes glow {
+        20%,
+        50%,
+        75% {
+          box-shadow: 3px 5px 20px var(--i);
+        }
+
+        22%,
+        52%,
+        77% {
+          box-shadow: 3px 5px 20px var(--i), 3px 5px 40px var(--i),
+            3px 5px 60px var(--i);
+        }
+      }
+
+      @media screen and (max-width: 450px) {
+        .trim-parent {
+          height: 70%;
+        }
+
+        .trim {
+          height: 75%;
+        }
+
+        .tree-star-parent {
+          width: 85%;
+          left: 8%;
+        }
+
+        .star-parent {
+          left: 41%;
+        }
+      }
+    </style>
+    <title>~ Merry 🎄 Xmas ~</title>
+  </head>
+  <body>
+    <div class="app">
+      <!-- <div class="trim-parent"> -->
+      <div class="trim"></div>
+      <div class="trim-parent">
+        <div class="background">
+          <div class="tree-star-parent">
+            <div class="star-parent">
+              <div class="up-star"></div>
+              <div class="down-star"></div>
+            </div>
+
+            <div class="tree-top treepiece"></div>
+            <div class="tree-middle-one treepiece"></div>
+            <div class="tree-middle-two treepiece"></div>
+            <div class="tree-middle-three treepiece"></div>
+            <div class="tree-middle-four treepiece"></div>
+            <div class="tree-middle-five treepiece"></div>
+            <div class="tree-middle-six treepiece"></div>
+            <div class="stump"></div>
+          </div>
+        </div>
+        <div class="garage"></div>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <script>
+      var treeTop = document.querySelector(".tree-top");
+      var treeMidOne = document.querySelector(".tree-middle-one");
+      var treeMidTwo = document.querySelector(".tree-middle-two");
+      var treeMidThree = document.querySelector(".tree-middle-three");
+      var treeMidFour = document.querySelector(".tree-middle-four");
+      var treeMidFive = document.querySelector(".tree-middle-five");
+      var treeLevels = [
+        treeTop,
+        treeMidOne,
+        treeMidTwo,
+        treeMidThree,
+        treeMidFour,
+        treeMidFive,
+      ];
+
+      let lightCounter = [3, 5, 7, 9, 11, 13];
+      (() => {
+        setTimeout(async () => {
+          for (let i = 0; i < treeLevels.length; i++) {
+            for (let j = 0; j < lightCounter[i]; j++) {
+              let light = document.createElement("div");
+              light.className = "light";
+              let bgColor = `hsl(${(Math.random() * 200) | 0} 80% 40%)`;
+              light.style.backgroundColor = bgColor;
+              light.style.setProperty("--i", bgColor);
+              light.style.animation = `glow ${Math.random() * 10}s ${
+                Math.random() * 8
+              }s infinite`;
+
+              await new Promise((resolve) => {
+                setTimeout(() => resolve(), 200);
+              });
+              treeLevels[i].append(light);
+            }
+
+            console.log("lightCounter", lightCounter[i]);
+          }
+        }, 8500);
+      })();
+    </script>
+  </body>
+</html>
